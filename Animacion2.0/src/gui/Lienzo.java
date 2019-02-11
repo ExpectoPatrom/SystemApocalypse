@@ -7,7 +7,6 @@ package gui;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.util.TimerTask;
 import javax.swing.JPanel;
@@ -27,14 +26,13 @@ public final class Lienzo extends JPanel{
     Fondo fondo;
     public Lienzo(){
         setVisible(true);
-        fondo = new Fondo("../RECURSOS/pequeña.png");
+        fondo = new Fondo("../RECURSOS/fondo.png");
         phillColection = new Phill();
         imagenLienzo = new BufferedImage(1000,800,BufferedImage.TYPE_INT_RGB);  
         imagenLienzo = actualizarImagen(phillColection.PhillDelMomento, imagenLienzo,1,1,fondo);
         timer = new Timer();
         timer.schedule(new tarea(),0,40);
     }
-    
     
     public BufferedImage actualizarImagen(Sprite SpriteADibujar, BufferedImage imagenLienzo,int x,int y,Fondo fondo){
         int pixelesSprite[][] = SpriteADibujar.pixeles;
@@ -61,10 +59,6 @@ public final class Lienzo extends JPanel{
         imagenLienzo = actualizarImagen(phillColection.PhillDelMomento, imagenLienzo,phillColection.x,phillColection.y,fondo);
         g2d.drawImage(imagenLienzo, 0, 0, null);
         g.dispose();
-    }
-    public void ActionPerformed(ActionEvent e){
-        phillColection.actualizar();
-        repaint();
     }
     private class tarea extends TimerTask{
 

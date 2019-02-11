@@ -30,14 +30,7 @@ public class Principal extends JFrame{
         add(lienzo);
         pack();
         setSize(dimension);
-        lienzo.setBounds(0, 0, 800, 800);
+        lienzo.setBounds(0, 0, 1000, 800);
         addKeyListener(lienzo.phillColection);          
     }
-    
-//    public void actionPerformed(ActionEvent e){
-//        lienzo.phillColection.actualizar();
-//        System.out.println("aaa");
-//        System.out.println("CALLED");
-//        lienzo.repaint();
-//    }
 }
