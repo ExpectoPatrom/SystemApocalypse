@@ -24,9 +24,13 @@ public final class Lienzo extends JPanel{
     Phill phillColection;
     Timer timer;    
     Fondo fondo;
+    Boolean jugando = false;
+    int contador = 0;
+    
     public Lienzo(){
         setVisible(true);
         fondo = new Fondo("../RECURSOS/fondo.png");
+        
         phillColection = new Phill();
         imagenLienzo = new BufferedImage(1000,800,BufferedImage.TYPE_INT_RGB);  
         imagenLienzo = actualizarImagen(phillColection.PhillDelMomento, imagenLienzo,1,1,fondo);
@@ -57,7 +61,12 @@ public final class Lienzo extends JPanel{
         super.paint(g);        
         Graphics2D g2d = (Graphics2D)g;
         imagenLienzo = actualizarImagen(phillColection.PhillDelMomento, imagenLienzo,phillColection.x,phillColection.y,fondo);
-        g2d.drawImage(imagenLienzo, 0, 0, null);
+        cargaImagen temp = new cargaImagen("/RECURSOS/portada.png");
+        if(jugando){
+            g2d.drawImage(imagenLienzo, 0, 0, null);
+        }else{
+            g2d.drawImage(temp.img, 0, 0, null);
+        }
         g.dispose();
     }
     private class tarea extends TimerTask{
@@ -65,6 +74,10 @@ public final class Lienzo extends JPanel{
         @Override
         public void run() {
             repaint();
+            contador++;
+            if(contador>200){
+                jugando=true;
+            }
         }
     
     }
